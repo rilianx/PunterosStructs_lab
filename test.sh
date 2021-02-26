@@ -4,7 +4,7 @@
 
 # Everything below will go to the file 'log':
 
-target_file="exercises_answer.c"
+target_file="exercises.c"
 testcode="test.c"
 
 #Verifca si se realizaron cambios 
@@ -43,7 +43,7 @@ if ./a.out &> /dev/null ; then
   
   ./a.out >&3
 
-  echo "Quiere actualizar su puntaje en el servidor?(s|n): " >&3
+  echo "Quiere actualizar su avance en el servidor? (s|n): " >&3
   read response
 
   if [ "$response" == "s" ]; then
@@ -53,6 +53,6 @@ if ./a.out &> /dev/null ; then
 else
 
   gcc -g $testcode >&3
-  gdb -ex 'run' -ex q ./a.out >&3
+  gdb -silent -ex='set disable-randomization off' -ex='set confirm off' -ex='run' -ex=quit a.out >&3
 
 fi

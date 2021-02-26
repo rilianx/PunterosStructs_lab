@@ -56,24 +56,17 @@ int test_suite(int(*test)(), char* msg, int max_score, int id, int req_id){
 /*************  TESTS  ******************/
 int test_suma(){
     int* res = (int*) malloc(sizeof(int));
-    char str[10];
 
     int k;
     for(k=0;k<5;k++){
         int i=rand()%100;
         int j=rand()%100;
-        strcpy(msg, "suma(");
-        itoa(i,str,10);
-        strcat(msg, str);strcat(msg, ",");
-        itoa(j,str,10);
-        strcat(msg, str);strcat(msg, ",res)");
+        sprintf(msg,"suma(%d,%d,res)",i,j);
         info_msg(msg);
 
         suma(i,j, res);
         if(*res!=i+j){
-            strcpy(msg, "res==");
-            itoa(*res,str,10);
-            strcat(msg, str);
+            sprintf (msg,"res==%d",*res);
             err_msg(msg);
             return 0;
         }
@@ -85,32 +78,26 @@ int test_suma(){
 int test_suma_n(){
     int* res = (int*) malloc(sizeof(int));
     int* a = (int*) malloc(sizeof(int)*10);
-    char number[10];
     
     int i; int m=rand()%10+1;
     int tot=0;
-    strcpy(msg,"a=[");
+    sprintf(msg,"a=[");
     for(i=0; i<10; i++){
         a[i]=rand()%100;
         if(i>=10-m) tot +=a[i];
-        itoa(a[i],number,10);
-        strcat(msg,number); strcat(msg,",");
+        sprintf(msg,"%s %d,",msg,a[i]);
     }
-    strcat(msg,"]");
+    sprintf(msg,"%s]",msg);
     info_msg(msg);
-    itoa(m,number,10);
-    strcpy(msg,"m="); strcat(msg,number);
-    info_msg(msg);
-    info_msg("sumaNultimos(a, 10, m, res)");
 
+    sprintf(msg,"m=%d",m);
+    info_msg(msg);
+
+    info_msg("sumaNultimos(a, 10, m, res)");
     sumaNultimos(a, 10, m, res);
 
     if(tot!=*res){
-        strcpy(msg,"deberia dar:");
-        itoa(tot,number,10);
-        strcat(msg,number); strcat(msg,", pero dio ");
-        itoa(*res,number,10);
-        strcat(msg,number);
+        sprintf(msg,"deberia dar:%d, pero dio:%d",tot,*res);
         err_msg(msg);
         return 0;
     }

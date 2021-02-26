@@ -12,14 +12,21 @@ y en c almacena el valor de la suma de a más b.
 */
 
 void suma(int a, int b, int * c) {
-
+   
 }
 
 /*
 Esta función suma los N primeros números del arreglo a
 */
 int sumaN(int a[], int N) {
-    return 0;
+    int i;
+    int tot = 0;
+
+    for(i = 0; i < N; i++) {
+      tot += a[i];
+    }
+
+    return tot;
 }
 
 /*
@@ -30,7 +37,7 @@ Utilice la función sumaN.
 */
 
 void sumaNultimos(int a[], int n, int m, int * suma) {
-   
+
 }
 
 /*
@@ -74,7 +81,7 @@ Programe la función void asignarValor(Vector * v, int i, int valor),
 la cual asigna el valor a la posición i del vector v.
 */
 void asignarValor(Vector * v, int i, int valor) {
-  
+
 }
 
 /*
@@ -92,7 +99,7 @@ Función que suma los vectores `a` y `b` y
 actualiza el vector `c` con el resultado de la suma.
 */
 void sumaV(Vector * a, Vector * b, Vector * c) {
-   
+
 }
 
 /*
@@ -101,5 +108,5 @@ Use las operaciones implementadas de vectores para
 sumar (a1,a2)+(b1+b2). Almacene el resultado en el vector c.
 */
 void sumaV2(int a1, int a2, int b1, int b2, Vector *c){
-  
+
 }
