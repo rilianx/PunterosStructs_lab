@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
-#include "exercises_answer.c"
+#include "exercises.c"
 
 
 char * _strdup(const char * str) {
@@ -148,6 +148,7 @@ int test_creaP(){
 int test_creaV(){
     int size=rand()%10+1;
     sprintf(msg,"v=crearVector(%d)",size);
+    info_msg(msg);
     Vector *v = crearVector(size);
     if(v ==NULL){
         err_msg("v es NULL"); return 0;
@@ -222,7 +223,10 @@ int test_sumaV(){
     v2->datos[0]=a; v2->datos[1]=b; v2->datos[2]=c;
 
     info_msg("Creando vector v3 con 3 elementos");
-    Vector* v3 = crearVector(3);
+    Vector *v3 = (Vector*)malloc(sizeof(Vector));
+    v3->datos = (int *)calloc(3, sizeof(int));
+    v3->capacidad = 3;
+
     sumaV(v1, v2, v3);
     info_msg("sumaV(v1, v2, v3)");
     if(suma!=v3->datos[0] || sumb!=v3->datos[1] || sumc!=v3->datos[2]){
@@ -238,7 +242,7 @@ int test_sumaV(){
 
 int test_sumaV2(){
     Vector *c = (Vector*)malloc(sizeof(Vector));
-    c->datos = (int *)calloc(3, sizeof(int));
+    c->datos = (int *)calloc(2, sizeof(int));
     c->capacidad = 2;
     int a1=rand()%10, a2=rand()%20, b1=rand()%30, b2=rand()%40;
     sprintf(msg,"a1=%d,a2=%d,b1=%d,b2=%d",a1,a2,b1,b2);

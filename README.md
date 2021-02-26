@@ -1,3 +1,5 @@
+
+
 Ejercicios sobre punteros arreglos y la declaración Struct
 =====
 
