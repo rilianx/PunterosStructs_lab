@@ -11,6 +11,11 @@ Ejercicios sobre punteros arreglos y la declaración Struct
 * Para testear sus códigos debe hacer click en Run▸
 * Puede agregar todos los `printf` que estime conveniente para *debuggear* su código
 * No está permitido usar comandos de git (a menos que el profesor lo indique)
+* Para evitar escribir su login y contraseña github cada vez que desea subir los cambios, puede escribir en la consola el siguiente comando: 
+````
+git remote set-url origin https://{login}:{pass}@github.com/OptativoPUCV/pointersandstruct-lab-{login}
+````
+Reemplace `{login}` y `{pass}` por su login y contraseña de usuario github.
 
 ---
 
