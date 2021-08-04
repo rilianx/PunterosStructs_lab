@@ -13,9 +13,9 @@ Ejercicios sobre punteros arreglos y la declaración Struct
 * No está permitido usar comandos de git (a menos que el profesor lo indique)
 * Para evitar escribir su login y contraseña github cada vez que desea subir los cambios, puede escribir en la consola el siguiente comando: 
 ````
-git remote set-url origin https://{login}:{pass}@github.com/OptativoPUCV/pointersandstruct-lab-{login}
+git remote set-url origin https://{login}:{pass}@github.com/{repo}
 ````
-Reemplace `{login}` y `{pass}` por su login y contraseña de usuario github.
+Reemplace `{login}` y `{pass}` por su login y contraseña de usuario github. {repo} es el nombre del repositorio github asociado a su código, debería hacer algo como: `OptativoPUCV/2021_2-lab1-iaraya` 
 
 ---
 
