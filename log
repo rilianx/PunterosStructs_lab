@@ -22,3 +22,9 @@ exercises.c:15:5: error: assignment makes pointer from integer without a cast [-
 cc1.exe: all warnings being treated as errors
 Compilation failed
 28ddb33
+mi.,  4 de ago. de 2021 15:45:52: 
+ exercises.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+ tests:  0|7
+total_score: 0/70
+3547a2b
