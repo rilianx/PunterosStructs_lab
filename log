@@ -65,3 +65,8 @@ mi.,  4 de ago. de 2021 13:33:52:
  exercises.c | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
  tests:  0|7
+mi.,  4 de ago. de 2021 13:35:44: 
+ exercises.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+Compiling with: gcc test.c -Wall -Werror -o a.out
+ tests:  0|7
