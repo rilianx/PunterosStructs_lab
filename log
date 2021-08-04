@@ -74,3 +74,9 @@ mi.,  4 de ago. de 2021 15:51:30:
  tests:  0|7
 total_score: 0/70
 ce50e27
+mi.,  4 de ago. de 2021 15:51:40: 
+ exercises.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+ tests:  0|7
+total_score: 0/70
+dff25cd
