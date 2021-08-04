@@ -62,3 +62,9 @@ mi.,  4 de ago. de 2021 15:50:57:
  tests:  0|7
 total_score: 0/70
 eef46b5
+mi.,  4 de ago. de 2021 15:51:13: 
+ exercises.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+ tests:  1|6
+total_score: 10/70
+686b2ee
