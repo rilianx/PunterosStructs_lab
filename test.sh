@@ -11,7 +11,7 @@ testcode="test.c"
 CHANGED=$(git diff --ignore-space-at-eol -b -w --ignore-blank-lines $target_file)
 
 #Si hubieron cambios se actualiza el log
-if [ -n "$CHANGED" ]; then
+if [ -n "$CHANGED" ] || [ ! -f "a.out" ]; then
   git checkout -- $testcode log &> /dev/null
   exec 1>>log 2>&1
 
