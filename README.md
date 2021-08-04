@@ -18,7 +18,7 @@ Ejercicios sobre punteros arreglos y la declaración Struct
 
 2. Considere la siguiente función:
 
-````c
+````
 int sumaN(int a[], int N) { // Suma N números del arreglo.
     int i;
     int tot = 0;
