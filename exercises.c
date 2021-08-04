@@ -12,7 +12,7 @@ y en c almacena el valor de la suma de a más b.
 */
 
 void suma(int a, int b, int * c) {
-   *c = a+b;
+   c=NULL;
 }
 
 /*
