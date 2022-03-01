@@ -3,20 +3,16 @@
 Ejercicios sobre punteros arreglos y la declaración Struct
 =====
 
+
 ---
-### Antes de comenzar
+**Antes de comenzar**
 
-* Para resolver el laboratorio debe conectarse a Repl.it. 
-* Sólo puede modificar el archivos `exercises.c` 
-* Para testear sus códigos debe hacer click en Run▸
-* Puede agregar todos los `printf` que estime conveniente para *debuggear* su código
+* Abra el Visual Studio Code y abra una nueva ventana
+* En el explorador ponga la opción para clonar repositorio y clone **este repositorio**
+* Sólo puede modificar el archivo `exercises.c` 
+* Para testear sus códigos debe abrir un terminal *git bash* y ejecutar el comando `./test.sh`
+* Verifique que sus cambios se hayan subido al repositorio en github
 * No está permitido usar comandos de git (a menos que el profesor lo indique)
-* Para evitar escribir su login y contraseña github cada vez que desea subir los cambios, puede escribir en la consola el siguiente comando: 
-````
-git remote set-url origin https://{login}:{pass}@github.com/{repo}
-````
-Reemplace `{login}` y `{pass}` por su login y contraseña de usuario github. {repo} es el nombre del repositorio github asociado a su código, debería hacer algo como: `OptativoPUCV/2021_2-lab1-iaraya` 
-
 ---
 
 1. Escriba el código para la función `void suma(int a, int b, int * c)`, la cual recibe 3 parámetros (a, b y c), y en c almacena el valor de la suma de a más b.
