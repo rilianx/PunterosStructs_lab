@@ -12,3 +12,9 @@ exercises.c:15:14: error: expected expression before ';' token
               ^
 Compilation failed
 164b277
+mi.,  9 de mar. de 2022 11:18:11: 
+ exercises.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+ tests:  1|6
+total_score: 10/70
+47973e1
