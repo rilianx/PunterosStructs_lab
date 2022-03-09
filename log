@@ -2,3 +2,13 @@ mi.,  9 de mar. de 2022 11:17:14:
  tests:  0|7
 total_score: 0/70
 59b32c1
+mi.,  9 de mar. de 2022 11:17:36: 
+ exercises.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+In file included from test.c:5:0:
+exercises.c: In function 'suma':
+exercises.c:15:14: error: expected expression before ';' token
+     *c = a + ;
+              ^
+Compilation failed
+164b277
