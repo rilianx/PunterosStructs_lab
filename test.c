@@ -5,7 +5,7 @@
 #include "exercises.c"
 
 
-char * _strdup(const char * str) {
+char * _strdup2(const char * str) {
     char * aux = (char *)malloc(strlen(str) + 1);
     strcpy(aux, str);
     return aux;
