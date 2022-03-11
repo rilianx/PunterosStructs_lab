@@ -5,12 +5,6 @@
 #include "exercises.c"
 
 
-char * _strdup2(const char * str) {
-    char * aux = (char *)malloc(strlen(str) + 1);
-    strcpy(aux, str);
-    return aux;
-}
-
 char msg[300];
 int test_id = -1;
 
