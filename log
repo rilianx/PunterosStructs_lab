@@ -1,1 +1,23 @@
 
+vi., 11 de mar. de 2022  9:16:19: 
+test.c: In function 'suma':
+test.c:250:5: error: 'main' is normally a non-static function [-Werror=main]
+ int main( int argc, char *argv[] ) {
+     ^~~~
+test.c:272:1: error: expected declaration or statement at end of input
+ }
+ ^
+At top level:
+test.c:250:5: error: 'main' defined but not used [-Werror=unused-function]
+ int main( int argc, char *argv[] ) {
+     ^~~~
+test.c:8:8: error: '_strdup' defined but not used [-Werror=unused-function]
+ char * _strdup(const char * str) {
+        ^~~~~~~
+In file included from test.c:5:0:
+exercises.c:20:5: error: 'sumaN' defined but not used [-Werror=unused-function]
+ int sumaN(int a[], int N) {
+     ^~~~~
+cc1.exe: all warnings being treated as errors
+Compilation failed
+0c0edf2
