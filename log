@@ -1,0 +1,32 @@
+Fri 11 Mar 2022 01:04:22 PM UTC: 
+test.c: In function ‘test_suma_n’:
+test.c:88:25: error: ‘%d’ directive writing between 1 and 3 bytes into a region of size between 0 and 299 [-Werror=format-overflow=]
+   88 |         sprintf(msg,"%s %d,",msg,a[i]);
+      |                         ^~
+test.c:88:21: note: directive argument in the range [-99, 99]
+   88 |         sprintf(msg,"%s %d,",msg,a[i]);
+      |                     ^~~~~~~~
+In file included from /nix/store/iwd8ic5hhwdxn5dga0im55g5hjl270cd-glibc-2.33-47-dev/include/stdio.h:866,
+                 from test.c:1:
+/nix/store/iwd8ic5hhwdxn5dga0im55g5hjl270cd-glibc-2.33-47-dev/include/bits/stdio2.h:38:10: note: ‘__builtin___sprintf_chk’ output between 4 and 305 bytes into a destination of size 300
+   38 |   return __builtin___sprintf_chk (__s, __USE_FORTIFY_LEVEL - 1,
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   39 |       __glibc_objsize (__s), __fmt,
+      |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   40 |       __va_arg_pack ());
+      |       ~~~~~~~~~~~~~~~~~
+test.c:90:21: error: ‘__builtin___sprintf_chk’ may write a terminating nul past the end of the destination [-Werror=format-overflow=]
+   90 |     sprintf(msg,"%s]",msg);
+      |                     ^
+In file included from /nix/store/iwd8ic5hhwdxn5dga0im55g5hjl270cd-glibc-2.33-47-dev/include/stdio.h:866,
+                 from test.c:1:
+/nix/store/iwd8ic5hhwdxn5dga0im55g5hjl270cd-glibc-2.33-47-dev/include/bits/stdio2.h:38:10: note: ‘__builtin___sprintf_chk’ output between 2 and 301 bytes into a destination of size 300
+   38 |   return __builtin___sprintf_chk (__s, __USE_FORTIFY_LEVEL - 1,
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   39 |       __glibc_objsize (__s), __fmt,
+      |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   40 |       __va_arg_pack ());
+      |       ~~~~~~~~~~~~~~~~~
+cc1: all warnings being treated as errors
+Compilation failed
+17dfc1f
