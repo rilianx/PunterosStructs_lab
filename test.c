@@ -85,9 +85,9 @@ int test_suma_n(){
     for(i=0; i<10; i++){
         a[i]=rand()%100;
         if(i>=10-m) tot +=a[i];
-        sprintf(msg,"%s %d,",msg,a[i]);
+        sprintf(msg,"%.50s %d,",msg,a[i]);
     }
-    sprintf(msg,"%s]",msg);
+    sprintf(msg,"%.50s]",msg);
     info_msg(msg);
 
     sprintf(msg,"m=%d",m);
