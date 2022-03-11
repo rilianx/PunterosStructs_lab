@@ -21,3 +21,9 @@ exercises.c:20:5: error: 'sumaN' defined but not used [-Werror=unused-function]
 cc1.exe: all warnings being treated as errors
 Compilation failed
 0c0edf2
+vi., 11 de mar. de 2022  9:24:41: 
+ exercises.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+ tests:  1|6
+total_score: 10/70
+94ff1cc
