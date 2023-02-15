@@ -15,28 +15,12 @@ Ejercicios sobre punteros arreglos y la declaración Struct
 * No está permitido usar comandos de git (a menos que el profesor lo indique)
 ---
 
-1. Escriba el código para la función `void suma(int a, int b, int * c)`, la cual recibe 3 parámetros (a, b y c), y en c almacena el valor de la suma de a más b.
+1. Programe la función `void swap(int *a, int *b)`, la cual
+intercambia los valores de las variables apuntadas por a y b.
 
-2. Considere la siguiente función:
-
-````
-int sumaN(int a[], int N) { // Suma N números del arreglo.
-    int i;
-    int tot = 0;
-
-    for(i = 0; i < N; i++) {
-      tot += a[i];
-    }
-
-    return tot;
-}
-````
-
-Programe la función `void sumaNultimos(int a[], int n, int m, int *suma)`. Esta función suma los últimos `m` números del arreglo `a` y almacena el resultado en `*suma`. El arreglo `a` es una arreglo de `n` enteros (`n>m`).
-
-Debe hacer uso de la función int sumaN(int a[], int N)
-
-(Sugerencia: recuerde la [relación existente entre arreglos y punteros](https://docs.google.com/presentation/d/17-km6ljzQxvF2D34TOiuwJocSWWoJTjyc2gxTXkHP-s/edit#slide=id.g20f6bb6550_0_75)). 
+2. Programe la función `void arrayMaxMin(int *a, int n, int *max, int *min)`,
+la cual encuentra el máximo y el mínimo valor del arreglo `a` y los
+almacena en las variables apuntadas por `max` y `min`.
 
 3. Considere la siguiente `struct Persona`: 
 ````c

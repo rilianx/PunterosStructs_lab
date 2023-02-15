@@ -48,57 +48,64 @@ int test_suite(int(*test)(), char* msg, int max_score, int id, int req_id){
 
 
 /*************  TESTS  ******************/
-int test_suma(){
-    int* res = (int*) malloc(sizeof(int));
+int test_swap(){
+    int a=rand()%100;
+    int b=rand()%100;
+    int a0=a;
+    int b0=b;
 
-    int k;
-    for(k=0;k<5;k++){
-        int i=rand()%100;
-        int j=rand()%100;
-        sprintf(msg,"suma(%d,%d,res)",i,j);
-        info_msg(msg);
+    sprintf(msg,"a=%d, b=%d",a,b);
+    info_msg(msg);
 
-        suma(i,j, res);
-        if(*res!=i+j){
-            sprintf (msg,"res==%d",*res);
-            err_msg(msg);
-            return 0;
-        }
+    info_msg("swap(&a, &b)");
+    swap(&a, &b);
+
+    if(a!=b0 || b!=a0){
+        sprintf(msg,"a:%d, b:%d",a,b);
+        err_msg(msg);
+        return 0;
     }
-    ok_msg("Funcion suma");
+
+    ok_msg("swap");
     return 10;  
 }
 
-int test_suma_n(){
-    int* res = (int*) malloc(sizeof(int));
+int test_arrayMaxMin(){
     int* a = (int*) malloc(sizeof(int)*10);
-    
-    int i; int m=rand()%10+1;
-    int tot=0;
+    int i; int max=0; int min=100;
     sprintf(msg,"a=[");
+
     for(i=0; i<10; i++){
         a[i]=rand()%100;
-        if(i>=10-m) tot +=a[i];
+        if(a[i]>max) max=a[i];
+        if(a[i]<min) min=a[i];
         sprintf(msg,"%.50s %d,",msg,a[i]);
     }
     sprintf(msg,"%.50s]",msg);
     info_msg(msg);
 
-    sprintf(msg,"m=%d",m);
-    info_msg(msg);
+    int* max0 = (int*) malloc(sizeof(int));
+    int* min0 = (int*) malloc(sizeof(int));
 
-    info_msg("sumaNultimos(a, 10, m, res)");
-    sumaNultimos(a, 10, m, res);
+    info_msg("arrayMaxMin(a, 10, max0, min0)");
+    arrayMaxMin(a, 10, max0, min0);
 
-    if(tot!=*res){
-        sprintf(msg,"deberia dar:%d, pero dio:%d",tot,*res);
+    if(*max0!=max){
+        sprintf(msg,"max deberia dar:%d, pero dio:%d",max,*max0);
         err_msg(msg);
         return 0;
     }
 
-    ok_msg("sumaNultimos");
+    if(*min0!=min){
+        sprintf(msg,"min deberia dar:%d, pero dio:%d",min,*min0);
+        err_msg(msg);
+        return 0;
+    }
+
+    ok_msg("arrayMaxMin");
     return 10;
 }
+
 
 char nombre[30]; int edad;
 int test_creaP(){
@@ -247,8 +254,8 @@ int main( int argc, char *argv[] ) {
     srand(time(NULL));
 
     int total_score=0;
-    total_score+=test_suite(test_suma, "Test Suma...", 10, 0, test_id);
-    total_score+=test_suite(test_suma_n, "Test SumaNultimos...", 10, 0, test_id);
+    total_score+=test_suite(test_swap, "Test Swap...", 10, 0, test_id);
+    total_score+=test_suite(test_arrayMaxMin, "Test ArrayMaxMin...", 10, 0, test_id);
     strcpy(nombre,"Ignacio"); edad=38;
     total_score+=test_suite(test_creaP, "Test CreaPersona...", 10, 0, test_id);
     total_score+=test_suite(test_creaV, "Test CreaVector...", 10, 0, test_id);
@@ -259,8 +266,6 @@ int main( int argc, char *argv[] ) {
 
     if(argc==1)
       printf("\ntotal_score: %d/70\n", total_score);
-
-    
 
     return 0;
 }

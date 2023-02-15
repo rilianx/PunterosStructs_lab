@@ -5,47 +5,34 @@
 #include <ctype.h>
 //#include "exercises.h"
 
-/* 
-Ejercicio 1.
-Función que recibe 3 parámetros (a, b y c), 
-y en c almacena el valor de la suma de a más b.
-*/
-
-void suma(int a, int b, int * c) {
-    
-}
+//ejercicios de punteros y arreglos
 
 /*
-Esta función suma los N primeros números del arreglo a
+Ejercicio 1.
+Programe la función void swap(int *a, int *b), la cual
+intercambia los valores de las variables apuntadas por a y b.
 */
-int sumaN(int a[], int N) {
-    int i;
-    int tot = 0;
+void swap(int *a, int *b) {
 
-    for(i = 0; i < N; i++) {
-      tot += a[i];
-    }
-
-    return tot;
 }
 
 /*
 Ejercicio 2.
-Esta función debe sumar los últimos m números del 
-arreglo a y almacena el resultado en *suma.
-Utilice la función sumaN.
+Programe la función void arrayMaxMin(int *a, int n, int *max, int *min),
+la cual encuentra el máximo y el mínimo valor del arreglo a y los
+almacena en las variables apuntadas por max y min.
 */
-
-void sumaNultimos(int a[], int n, int m, int * suma) {
-
+void arrayMaxMin(int *a, int n, int *max, int *min) {
+    
 }
+
 
 /*
 Ejercicio 3.
 Considerando la estructura Persona, programe la función
 crearPersona(...), la cual crea una nueva persona con 
-los datos correspondientes y retorna un puntero al dato 
-recién creado.
+los datos ingresados como parámetros y retorna un puntero 
+al dato recién creado.
 */
 typedef struct {
   char nombre[30];
@@ -55,7 +42,11 @@ typedef struct {
 
 
 Persona* crearPersona(char nombre[], char rut[], int edad) {
-   return NULL;
+   Persona * p = (Persona *) malloc(sizeof(Persona));
+   //asignar valores de entrada a los campos de p
+
+
+   return p;
 }
 
 /*
@@ -67,7 +58,7 @@ correspondiente para el arreglo con `n` datos
 inicializados en 0 y luego retorna el vector creado.
 */
 typedef struct {
-   int * datos; // arreglo dinámico
+   int *datos; // arreglo dinámico
    int capacidad; // capacidad del arreglo
 } Vector;
 
