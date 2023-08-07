@@ -147,3 +147,9 @@ test.c:241:63: error: request for member ‘datos’ in something not a structur
 cc1: all warnings being treated as errors
 Compilation failed
 6a9e63e
+Mon 07 Aug 2023 04:09:37 PM UTC: 
+ exercises.c | 32 ++++++++++----------------------
+ 1 file changed, 10 insertions(+), 22 deletions(-)
+ tests:  0|1
+total_score: 0/70
+584dac4
