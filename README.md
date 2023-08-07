@@ -7,57 +7,60 @@ Ejercicios sobre punteros arreglos y la declaración Struct
 ---
 **Antes de comenzar**
 
-* Abra el Visual Studio Code y abra una nueva ventana
-* En el explorador ponga la opción para clonar repositorio y clone **este repositorio**
+* Importe el repositorio desde su cuenta en repl.it (si no tiene siga [este tutorial](https://chartreuse-goal-d5c.notion.site/C-mo-comenzar-con-los-labs-b4dd8c7abc5a425d8f25e2eaa060e5b5?pvs=4))
 * Sólo puede modificar el archivo `exercises.c` 
 * Para testear sus códigos debe abrir un terminal *git bash* y ejecutar el comando `./test.sh`
-* Verifique que sus cambios se hayan subido al repositorio en github
-* No está permitido usar comandos de git (a menos que el profesor lo indique)
+* Verifique que sus cambios se hayan subido a este repositorio
+* **No está permitido usar comandos de git** (a menos que el profesor lo indique)
 ---
 
-1. Programe la función `void swap(int *a, int *b)`, la cual
-intercambia los valores de las variables apuntadas por a y b.
+1. **Encuentra el Elemento Mayor**. Escribe una función que tome un arreglo de enteros
+y su tamaño, y devuelva el valor más grande del arreglo.
 
-2. Programe la función `void arrayMaxMin(int *a, int n, int *max, int *min)`,
-la cual encuentra el máximo y el mínimo valor del arreglo `a` y los
-almacena en las variables apuntadas por `max` y `min`.
+2. **Invertir un Arreglo**. Escribe una función que tome un arreglo y su tamaño, y luego
+invierta el orden de sus elementos.
 
-3. Considere la siguiente `struct Persona`: 
+3. **Filtrar Números Pares**. Escribe una función que tome un arreglo de enteros
+y su tamaño, y luego devuelva un nuevo arreglo que contenga solo
+los números pares del arreglo original.
+
+4. **Fusión de dos Arreglos Ordenados**. Escribe una función que tome dos arreglos
+ordenados y sus tamaños, y luego fusione estos dos
+arreglos en un tercer arreglo también ordenado.
+
+5. **Comprobación de Ordenación.** Escribe una función que tome un arreglo y su tamaño,
+y luego devuelva 1 si el arreglo está ordenado en orden ascendente,
+  0 si no está ordenado, y -1 si está ordenado en orden descendente.
+
+6. **Información de una Biblioteca**. Vamos a representar la información de una biblioteca. En la
+biblioteca, hay libros, y cada libro tiene un autor. Queremos organizar esta
+información utilizando estructuras anidadas en C. Escribe la función para
+inicializar la información de un libro.
+
 ````c
 typedef struct {
-  char nombre[30];
-  char rut[11];
-  int edad;
-} Persona; 
-````
+  char nombre[50];
+  int anioNacimiento;
+} Autor;
 
-Programe la función `Persona *crearPersona(...)`, la cual crea una nueva persona con los datos correspondientes y retorna un puntero al dato recién creado. 
-
-4. Considere la siguiente `struct Vector`:
-````c
 typedef struct {
-   int * datos; // arreglo dinámico
-   int capacidad; // capacidad del arreglo
-} Vector;
-````
-Escriba la función `Vector* crearVector(int n)`, la cual crea un vector con capacidad `n`, reserva la memoria correspondiente para el arreglo con `n` datos inicializados en 0 y luego retorna el vector creado.
-
-5. Programe las función void `asignarValor(Vector * v, int i, int valor)`, 
-la cual asigna `valor` a la posición `i` del vector `v`.
-
-6. Programe la función `int obtenerDato(Vector * v, int i)`, la cual retorna el dato en la posición `i` del vector `v`.
-
-7. Programe la función void `sumaV(Vector * a, Vector * b, Vector * c)`, la cual suma los vectores `a` y `b` y actualiza el vector `c` con el resultado de la suma. Asuma que los vecotres tienen el mismo tamaño.
-
-Por ejemplo, si:
-
-````
-a: [0 4  8 12 16 20 24 28 32 36]
-b: [0 8 16 24 32 40 48 56 64 72]
-````
-, entonces:
-````
-c: [0 12 24 36 48 60 72 84 96 108 ]
+  char titulo[100];
+  Autor autor;
+  int anioPublicacion;
+} Libro;
 ````
 
-8. Implemente la función `sumaV2(int a1, int a2, int b1, int b2, Vector *c)`. Esta función realiza la suma de vectores `(a1,a2)+(b1,b2)` y almacena el resultado en el vector `c`. Utilice las operaciones de vectores implementadas anteriormente!
+7. **Lista enlazada de números**. Escribe una función que tome un arreglo de enteros y su tamaño, y
+luego cree una lista enlazada usando la estructura Nodo. Cada nodo de la lista
+debe contener un número del arreglo, y los nodos deben estar enlazados en el
+mismo orden que los números aparecen en el arreglo. El último nodo de la lista
+debe apuntar a NULL. La función debe devolver un puntero al primer nodo de la
+lista enlazada.
+Recuerda reservar memoria dinámica para cada nodo usando malloc.
+
+````c
+typedef struct nodo {
+  int numero;
+  struct nodo *siguiente; // puntero al siguiente nodo
+} Nodo;
+````
