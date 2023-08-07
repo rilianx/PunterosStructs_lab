@@ -237,3 +237,15 @@ Mon 07 Aug 2023 04:30:24 PM UTC:
  tests:  1|0
 total_score: 10/70
 02cee15
+Mon 07 Aug 2023 04:31:47 PM UTC: 
+ exercises.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+test.c: In function ‘test_findMax’:
+test.c:77:95: error: expected ‘;’ before ‘printf’
+   77 |     if (found==0) printf("   [FAILED] El elemento retornado no se encuentra en el arreglo.\n")
+      |                                                                                               ^
+      |                                                                                               ;
+   78 |     printf("   [OK] findMax\n");
+      |     ~~~~~~                                                                                     
+Compilation failed
+829e80b
