@@ -267,3 +267,16 @@ Mon 07 Aug 2023 04:32:59 PM UTC:
  tests:  0|1
 total_score: 0/70
 a1dfbf5
+Mon 07 Aug 2023 04:38:01 PM UTC: 
+ exercises.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+test.c: In function ‘test_reverseArray’:
+test.c:94:27: error: ‘arr2’ may be used uninitialized [-Werror=maybe-uninitialized]
+   94 |         if (arr[i] != arr2[size - i - 1]) {
+      |                       ~~~~^~~~~~~~~~~~~~
+test.c:89:9: note: ‘arr2’ declared here
+   89 |     int arr2[100];
+      |         ^~~~
+cc1: all warnings being treated as errors
+Compilation failed
+31a5d4b
