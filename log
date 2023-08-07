@@ -364,3 +364,9 @@ test.c:84:12: error: too many arguments for format [-Werror=format-extra-args]
 cc1: all warnings being treated as errors
 Compilation failed
 4515f3d
+Mon 07 Aug 2023 04:47:41 PM UTC: 
+ exercises.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+ tests:  0|2
+total_score: 0/70
+4798713
