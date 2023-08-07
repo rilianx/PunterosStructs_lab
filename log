@@ -351,3 +351,16 @@ Mon 07 Aug 2023 04:46:03 PM UTC:
  tests:  0|2
 total_score: 0/70
 a75fd65
+Mon 07 Aug 2023 04:47:19 PM UTC: 
+ exercises.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+test.c: In function ‘test_findMax’:
+test.c:77:14: error: too many arguments for format [-Werror=format-extra-args]
+   77 |       printf("   [FAILED] El elemento retornado no es máximo\n", result, arr[i]);
+      |              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+test.c:84:12: error: too many arguments for format [-Werror=format-extra-args]
+   84 |     printf("   [FAILED] El elemento retornado no se encuentra en el arreglo.\n", result);
+      |            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+cc1: all warnings being treated as errors
+Compilation failed
+4515f3d
