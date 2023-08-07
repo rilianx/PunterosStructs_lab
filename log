@@ -455,3 +455,26 @@ test.c:135:5: error: ‘newSize’ is used uninitialized [-Werror=uninitialized]
 cc1: all warnings being treated as errors
 Compilation failed
 07fbd7c
+Mon 07 Aug 2023 05:09:08 PM UTC: 
+ exercises.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+test.c: In function ‘test_filterEvenNumbers’:
+test.c:135:26: error: passing argument 2 of ‘readIntArray’ makes pointer from integer without a cast [-Werror=int-conversion]
+  135 |     readIntArray(result, newSize);
+      |                          ^~~~~~~
+      |                          |
+      |                          int
+test.c:115:35: note: expected ‘int *’ but argument is of type ‘int’
+  115 | void readIntArray(int arr[], int* size) {
+      |                              ~~~~~^~~~
+test.c: In function ‘readIntArray’:
+test.c:118:9: error: ignoring return value of ‘scanf’ declared with attribute ‘warn_unused_result’ [-Werror=unused-result]
+  118 |         scanf("%d", &k);
+      |         ^~~~~~~~~~~~~~~
+test.c: In function ‘test_filterEvenNumbers’:
+test.c:135:5: error: ‘newSize’ is used uninitialized [-Werror=uninitialized]
+  135 |     readIntArray(result, newSize);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+cc1: all warnings being treated as errors
+Compilation failed
+fb499f1
