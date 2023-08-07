@@ -327,3 +327,15 @@ test.c:53:6: note: declared here
 cc1: all warnings being treated as errors
 Compilation failed
 6c74543
+Mon 07 Aug 2023 04:45:21 PM UTC: 
+ exercises.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+test.c: In function ‘test_reverseArray’:
+test.c:99:3: error: too few arguments to function ‘print_array’
+   99 |   print_array(arr);
+      |   ^~~~~~~~~~~
+test.c:50:6: note: declared here
+   50 | void print_array(int arr[], int size) {
+      |      ^~~~~~~~~~~
+Compilation failed
+aedcf45
