@@ -478,3 +478,13 @@ test.c:135:5: error: ‘newSize’ is used uninitialized [-Werror=uninitialized]
 cc1: all warnings being treated as errors
 Compilation failed
 fb499f1
+Mon 07 Aug 2023 05:09:25 PM UTC: 
+ exercises.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+test.c: In function ‘readIntArray’:
+test.c:124:5: error: ignoring return value of ‘scanf’ declared with attribute ‘warn_unused_result’ [-Werror=unused-result]
+  124 |     scanf("%d", &k);
+      |     ^~~~~~~~~~~~~~~
+cc1: all warnings being treated as errors
+Compilation failed
+32ccd54
