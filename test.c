@@ -1,271 +1,410 @@
+#include "exercises.c"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
-#include "exercises.c"
-
 
 char msg[300];
 int test_id = -1;
 
 
-int success(){
-  printf("SUCCESS\n");
-  exit(0);
-}
+int test_suite(int (*test)(), char *msg, int max_score, int id, int req_id) {
+  if (test_id == -1 || test_id == id) {
+    printf("\n%s\n", msg);
+    int score = test();
 
-void err_msg(char* msg){
-    //if(test_id!=-1) return;
-    printf("   [FAILED] ");
-    printf("%s\n",msg);
-    //print_trace();
-}
-
-void ok_msg(char* msg){
-    //if(test_id!=-1) return;
-    printf ("   [OK] ");
-    printf("%s\n",msg);
-}
-
-void info_msg(char* msg){
-    //if(test_id!=-1) return;
-    printf ("   [ INFO ] %s\n",msg);
-}
-
-int test_suite(int(*test)(), char* msg, int max_score, int id, int req_id){
-    if(test_id==-1 || test_id==id){
-        printf("\n%s\n", msg);
-        int score=test();
-
-        if(id==req_id && score == max_score) success();
-
-        printf("   partial_score: %d/%d\n", score, max_score); 
-        
-        return score;
+    if (id == req_id && score == max_score){
+        printf("SUCCESS\n");
+        exit(0);
     }
-    return 0;
+
+    printf("   partial_score: %d/%d\n", score, max_score);
+
+    return score;
+  }
+  return 0;
 }
 
+
+void print_array(int arr[], int size) {
+  printf("[");
+  for (int i = 0; i < size; i++) {
+    printf("%d, ", arr[i]);
+  }
+  printf("]\n");
+}
+
+void print_linked_list(Nodo* lista) {
+  printf("   linked list: ");
+  while (lista) {
+    printf("%d -> ", lista->numero);
+    lista = lista->siguiente;
+  }
+  printf("NULL\n");
+}
+
+
+void readIntArray(int arr[], int *size) {
+  for (int i = 0; i < *size; i++) {
+    int k = 0;
+    if (scanf("%d", &k) != -1) {
+      if (k == -1) {
+        *size = i;
+        return;
+      }
+      arr[i] = k;
+    }
+  }
+}
+
+void create_random_array(int arr[], int *size, int max_size) {
+  *size = rand() % max_size + 1;
+  for (int i = 0; i < *size; i++) {
+    arr[i] = rand() % 100; // Puedes ajustar el rango según lo necesites
+  }
+}
+
+
+
+void create_random_sorted_array(int arr[], int *size, int max_size, int descending) {
+  *size = rand() % (max_size-4) + 5;
+  arr[0] = rand() % 10;
+  for (int i = 1; i < *size; i++) {
+    arr[i] = arr[i - 1] + (descending ? -(rand() % 10) : rand() % 10);
+  }
+}
+
+void create_random_unsorted_array(int arr[], int *size, int max_size) {
+  create_random_sorted_array(arr, size, max_size, 0); // Create an ascending sorted array
+  int pos = rand() % (*size - 1);
+  int temp = arr[pos];
+  arr[pos] = arr[pos + 1] + 1;
+  arr[pos + 1] = temp; 
+}
+
+
+int test_findMax() {
+  for (int k = 0; k < 10; k++) {
+    int arr[10];
+    int size;
+    create_random_array(arr, &size, 10);
+    int result = findMax(arr, size);
+    int found = 0;
+    for (int i = 0; i < size; i++) {
+      if (result < arr[i]) {
+        printf("   input array: ");
+        print_array(arr, size);
+        printf("   result: %d\n", result);
+        printf("   [FAILED] El elemento retornado no es maximo\n");
+        return 0;
+      }
+      if (result == arr[i])
+        found = 1;
+    }
+    if (found == 0) {
+      printf("   input array: ");
+      print_array(arr, size);
+      printf("   result: %d\n", result);
+      printf(
+          "   [FAILED] El elemento retornado no se encuentra en el arreglo.\n");
+      return 0;
+    }
+  }
+  printf("   [PASSED] Prueba exitosa\n");
+  return 10;
+}
+
+int test_reverseArray() {
+  for (int k = 0; k < 10; k++) {
+    int arr[100];
+    int size;
+    create_random_array(arr, &size, 10);
+    int arr2[100];
+    memcpy(arr2, arr, sizeof(arr));
+
+    reverseArray(arr, size);
+    for (int i = 0; i < size; i++) {
+      if (arr[i] != arr2[size - i - 1]) {
+        printf("   input array: ");
+        print_array(arr2, size);
+        printf("   reversed array: ");
+        print_array(arr, size);
+        printf(
+            "   [FAILED] reverseArray no invierte correctamente el arreglo\n");
+        return 0;
+      }
+    }
+  }
+  printf("   [PASSED] Prueba exitosa\n");
+  return 10;
+}
+
+
+
+int test_filterEvenNumbers() {
+  for (int k = 0; k < 10; k++) {
+    int arr[100];
+    int size;
+    create_random_array(arr, &size, 10);
+
+    int newSize;
+    int *result = filterEvenNumbers(arr, size, &newSize);
+
+    // result = (int*) malloc(10*sizeof(int));
+    // print_array(arr, size);
+    // readIntArray(result, &newSize);
+    // print_array(result, newSize);
+
+    if (result == NULL) {
+      printf("   [FAILED] Retorna NULL\n");
+      return 0;
+    }
+
+    if (arr == result) {
+      printf("   [FAILED] El arreglo retornado es el arreglo original\n");
+      return 0;
+    }
+
+    int j = 0;
+    for (int i = 0; i < size; i++) {
+      if (arr[i] % 2 == 0) {
+        if (j == newSize || result[j] != arr[i]) {
+          printf("   input array: ");
+          print_array(arr, size);
+          printf("   filtered array: ");
+          print_array(result, newSize);
+          printf("   [FAILED] El arreglo retornado no es correcto\n");
+          return 0;
+        }
+        j++;
+      }
+    }
+    if (j != newSize) {
+      printf("   input array: ");
+      print_array(arr, size);
+      printf("   filtered array: ");
+      print_array(result, newSize);
+      printf("   [FAILED] El arreglo retornado no es correcto\n");
+      return 0;
+    }
+  }
+
+  printf("   [PASSED] Prueba exitosa\n");
+  return 10;
+}
+
+int test_mergeSort() {
+  int arr1[5];
+  int arr2[5];
+  int size1, size2;
+  create_random_sorted_array(arr1, &size1, 5, 0);
+  create_random_sorted_array(arr2, &size2, 5, 0);
+
+  int result[10];
+  mergeSortedArrays(arr1, size1, arr2, size2, result);
+  // int size=size1+size2;
+  // printf("   input array1: "); print_array(arr1, size1);
+  // printf("   input array2: "); print_array(arr2, size2);
+  // readIntArray(result, &size);
+  
+
+  int newSize = size1 + size2;
+  int j = 0, k = 0;
+  
+  for (int i = 0; i < newSize; i++) {
+    if (i > 0 && result[i] < result[i - 1]) {
+      printf("   input array1: "); print_array(arr1, size1);
+      printf("   input array2: "); print_array(arr2, size2);
+      printf("   merged array: "); print_array(result, newSize);
+      printf("   [FAILED] El arreglo no está ordenado correctamente\n");
+      return 0;
+    }
+    
+    if (j < size1 && (k >= size2 || arr1[j] <= arr2[k])) {
+      if (arr1[j] != result[i]) {
+        printf("   input array1: "); print_array(arr1, size1);
+        printf("   input array2: "); print_array(arr2, size2);
+        printf("   merged array: "); print_array(result, newSize);
+        printf("   [FAILED] Los elementos no coinciden\n");
+        return 0;
+      }
+      j++;
+    } else if (k < size2 && (j >= size1 || arr2[k] <= arr1[j])) {
+      if (arr2[k] != result[i]) {
+        printf("   input array1: "); print_array(arr1, size1);
+        printf("   input array2: "); print_array(arr2, size2);
+        printf("   merged array: "); print_array(result, newSize);
+        printf("   [FAILED] Los elementos no coinciden\n");
+        return 0;
+      }
+      k++;
+    }
+
+  }
+
+  printf("   [PASSED] Prueba exitosa\n");
+  return 10;
+}
+
+
+int test_checkSorted() {
+
+  for (int i = 0; i < 10; i++) {
+    int arr[10];
+    int size;
+
+    // Test random array
+    create_random_unsorted_array(arr, &size, 10);
+    int result = checkSorted(arr, size);
+    if (result != 0) {
+      printf("   input array: "); print_array(arr, size);
+      printf("   [FAILED] Resultado esperado: 0, resultado obtenido: %d\n", result);
+      return 0;
+    }
+
+    // Test ascending sorted array
+    create_random_sorted_array(arr, &size, 10, 0);
+    result = checkSorted(arr, size);
+    if (result != 1) {
+      printf("   input array: "); print_array(arr, size);
+      printf("   [FAILED] Resultado esperado: 1, resultado obtenido: %d\n", result);
+      return 0;
+    }
+
+    // Test descending sorted array
+    create_random_sorted_array(arr, &size, 10, 1);
+    result = checkSorted(arr, size);
+    if (result != -1) {
+      printf("   input array: "); print_array(arr, size);
+      printf("   [FAILED] Resultado esperado: -1, resultado obtenido: %d\n", result);
+      return 0;
+    }
+  }
+
+  printf("   [PASSED] Todas las pruebas aleatorias han pasado\n");
+  return 10;
+
+}
+
+void imprimirLibro(const Libro *libro) {
+  printf("    Título: %s\n", libro->titulo);
+  printf("    Autor: %s (Nacido en: %d)\n", libro->autor.nombre, libro->autor.anioNacimiento);
+  printf("    Año de Publicación: %d\n", libro->anioPublicacion);
+}
+
+int test_biblioteca() {
+  Libro libro;
+
+  const char *titulos[] = {
+      "El Hobbit", "1984", "Cien Años de Soledad", "Don Quijote de la Mancha"};
+  const char *autores[] = {
+      "J.R.R. Tolkien", "George Orwell", "Gabriel García Márquez", "Miguel de Cervantes"};
+  int aniosNacimiento[] = {1892, 1903, 1927, 1547};
+  int aniosPublicacion[] = {1937, 1949, 1967, 1605};
+
+  for (int i = 0; i < 4; i++) {
+    inicializarLibro(&libro, titulos[i], autores[i], aniosNacimiento[i],
+                     aniosPublicacion[i]);
+    printf("   Información del libro %d:\n", i + 1);
+    imprimirLibro(&libro);
+    printf("\n");
+
+    if (strcmp(libro.titulo, titulos[i]) != 0 ||
+        strcmp(libro.autor.nombre, autores[i]) != 0 ||
+        libro.autor.anioNacimiento != aniosNacimiento[i] ||
+        libro.anioPublicacion != aniosPublicacion[i]) {
+      printf("   [FAILED] Los datos no coinciden con la entrada.\n");
+      return 0;
+    }
+  }
+
+  printf("   [PASSED] Todas las pruebas exitosas\n");
+  return 10;
+}
+
+
+int test_crearListaEnlazada() {
+  for (int k = 0; k < 10; k++) {
+    int arr[10];
+    int size;
+    create_random_array(arr, &size, 10);
+    Nodo* lista = crearListaEnlazada(arr, size);
+
+    Nodo* current = lista;
+    
+    for (int i = 0; i < size; i++) {
+      if (current == NULL || current->numero != arr[i]) {
+        printf("   input array: ");
+        print_array(arr, size);
+        print_linked_list(lista);
+        printf("   [FAILED] La lista enlazada no coincide con el arreglo.\n");
+        // Liberar la lista enlazada antes de retornar
+        while (lista) {
+          Nodo* temp = lista;
+          lista = lista->siguiente;
+          free(temp);
+        }
+        return 0;
+      }
+      current = current->siguiente;
+    }
+
+    // Verificar si hay nodos adicionales en la lista
+    if (current != NULL) {
+      printf("   input array: ");
+      print_array(arr, size);
+      print_linked_list(lista);
+      printf("   [FAILED] La lista enlazada contiene nodos adicionales.\n");
+      // Liberar la lista enlazada antes de retornar
+      while (lista) {
+        Nodo* temp = lista;
+        lista = lista->siguiente;
+        free(temp);
+      }
+      return 0;
+    }
+
+    // Liberar la lista enlazada
+    while (lista) {
+      Nodo* temp = lista;
+      lista = lista->siguiente;
+      free(temp);
+    }
+  }
+  printf("   [PASSED] Prueba exitosa\n");
+  return 10;
+}
+
+  
 
 /*************  TESTS  ******************/
-int test_swap(){
-    int a=rand()%100;
-    int b=rand()%100;
-    int a0=a;
-    int b0=b;
 
-    sprintf(msg,"a=%d, b=%d",a,b);
-    info_msg(msg);
+int main(int argc, char *argv[]) {
+  srand(time(NULL));
 
-    info_msg("swap(&a, &b)");
-    swap(&a, &b);
+  if (argc > 1)
+    test_id = atoi(argv[1]);
+  srand(time(NULL));
 
-    if(a!=b0 || b!=a0){
-        sprintf(msg,"a:%d, b:%d",a,b);
-        err_msg(msg);
-        return 0;
-    }
+  int total_score = 0;
+  total_score += test_suite(test_findMax, "Test Find Max...", 10, 0, test_id);
+  total_score +=
+      test_suite(test_reverseArray, "Test Reverse Array...", 10, 0, test_id);
+  total_score += test_suite(test_filterEvenNumbers,
+                            "Test Filter Even Numbers...", 10, 0, test_id);
+  total_score +=
+      test_suite(test_mergeSort, "Test Merged Sort Arrays...", 10, 0, test_id);
+  total_score +=
+      test_suite(test_checkSorted, "Test Check Sorted...", 10, 0, test_id);
+  total_score +=
+      test_suite(test_biblioteca, "Test Biblioteca...", 10, 0, test_id);
+  total_score +=
+      test_suite(test_crearListaEnlazada, "Test Lista Enlazada...", 10, 0, test_id);
+  
+  
 
-    ok_msg("swap");
-    return 10;  
-}
+  if (argc == 1)
+    printf("\ntotal_score: %d/70\n", total_score);
 
-int test_arrayMaxMin(){
-    int* a = (int*) malloc(sizeof(int)*10);
-    int i; int max=0; int min=100;
-    sprintf(msg,"a=[");
-
-    for(i=0; i<10; i++){
-        a[i]=rand()%100;
-        if(a[i]>max) max=a[i];
-        if(a[i]<min) min=a[i];
-        sprintf(msg,"%.50s %d,",msg,a[i]);
-    }
-    sprintf(msg,"%.50s]",msg);
-    info_msg(msg);
-
-    int* max0 = (int*) malloc(sizeof(int));
-    int* min0 = (int*) malloc(sizeof(int));
-
-    info_msg("arrayMaxMin(a, 10, max0, min0)");
-    arrayMaxMin(a, 10, max0, min0);
-
-    if(*max0!=max){
-        sprintf(msg,"max deberia dar:%d, pero dio:%d",max,*max0);
-        err_msg(msg);
-        return 0;
-    }
-
-    if(*min0!=min){
-        sprintf(msg,"min deberia dar:%d, pero dio:%d",min,*min0);
-        err_msg(msg);
-        return 0;
-    }
-
-    ok_msg("arrayMaxMin");
-    return 10;
-}
-
-
-char nombre[30]; int edad;
-int test_creaP(){
-    Persona* p=crearPersona(nombre, "15489XXX-2", edad);
-    sprintf(msg, "p=crearPersona(\"%s\", \"15489XXX-2\", %d)", nombre, edad);
-    info_msg(msg);
-
-    if(p==NULL){
-        err_msg("p es NULL"); return 0;
-    }
-
-    if(strcmp(p->nombre,nombre)!=0){
-        sprintf(msg,"p->nombre=%s",p->nombre);
-        err_msg(msg);
-        return 0;
-    }
-
-    if(p->edad!=edad){
-        sprintf(msg,"p->edad=%d",p->edad);
-        err_msg(msg);
-        return 0;
-    }
-
-    ok_msg("crearPersona");
-    return 10;
-}
-
-int test_creaV(){
-    int size=rand()%10+1;
-    sprintf(msg,"v=crearVector(%d)",size);
-    info_msg(msg);
-    Vector *v = crearVector(size);
-    if(v ==NULL){
-        err_msg("v es NULL"); return 0;
-    }
-    if(v->capacidad != size){
-        err_msg("capcaidad no fue inicalizada correctamente"); return 0;
-    }
-    int i;
-    for(i=0;i<size;i++){
-        if(v->datos[i] != 0){
-            err_msg("datos del vector deben ser inicializados en 0"); 
-            return 0;
-        }
-    }
-
-    ok_msg("crearVector");
-    return 10;
-
-}
-
-int test_asignarObtenerValor(){
-    int a=rand()%10, b=rand()%20, c=rand()%30;
-    sprintf(msg,"Creando el vector (%d,%d,%d)",a,b,c);
-    info_msg(msg);
-    Vector *v = (Vector*)malloc(sizeof(Vector));
-    v->datos = (int *)calloc(3, sizeof(int));
-    v->capacidad = 3;
-    asignarValor(v, 0, a);
-    asignarValor(v, 1, b);
-    asignarValor(v, 2, c);
-    info_msg("Obteniendo el primer valor del vector: obtenerValor(v,0)");
-    int val=obtenerValor(v,0);
-    if(a!=val){
-        sprintf(msg,"Valor obtenido no corresponde (%d)", val);
-        err_msg(msg);
-        return 0;
-    }
-
-    info_msg("Obteniendo el primer valor del vector: obtenerValor(v,2)");
-    val=obtenerValor(v,2);
-    if(c!=val){
-        sprintf(msg,"Valor obtenido no corresponde (%d)", val);
-        err_msg(msg);
-        return 0;
-    }
-
-    ok_msg("AsignarValor");
-    ok_msg("ObtenerValor");
-    return 10;
-}
-
-int test_sumaV(){
-    int a=rand()%10, b=rand()%20, c=rand()%30;
-    int suma=a,sumb=b,sumc=c;
-    sprintf(msg,"Creando el vector v1=(%d,%d,%d)",a,b,c);
-    info_msg(msg);
-
-    Vector *v1 = (Vector*)malloc(sizeof(Vector));
-    v1->datos = (int *)calloc(3, sizeof(int));
-    v1->capacidad = 3;
-
-    v1->datos[0]=a; v1->datos[1]=b; v1->datos[2]=c;
-
-    a=rand()%10; b=rand()%20; c=rand()%30;
-    suma+=a; sumb+=b; sumc+=c;
-    sprintf(msg,"Creando el vector v2=(%d,%d,%d)",a,b,c);
-    info_msg(msg);
-    Vector *v2 = (Vector*)malloc(sizeof(Vector));
-    v2->datos = (int *)calloc(3, sizeof(int));
-    v2->capacidad = 3;
-
-    v2->datos[0]=a; v2->datos[1]=b; v2->datos[2]=c;
-
-    info_msg("Creando vector v3 con 3 elementos");
-    Vector *v3 = (Vector*)malloc(sizeof(Vector));
-    v3->datos = (int *)calloc(3, sizeof(int));
-    v3->capacidad = 3;
-
-    sumaV(v1, v2, v3);
-    info_msg("sumaV(v1, v2, v3)");
-    if(suma!=v3->datos[0] || sumb!=v3->datos[1] || sumc!=v3->datos[2]){
-        sprintf(msg,"Suma no correcta: (%d,%d,%d)",v3->datos[0],v3->datos[1],v3->datos[2]);
-        err_msg(msg);
-        return 0;
-    }
-
-    ok_msg("sumaV");
-    return 10;
-
-}
-
-int test_sumaV2(){
-    Vector *c = (Vector*)malloc(sizeof(Vector));
-    c->datos = (int *)calloc(2, sizeof(int));
-    c->capacidad = 2;
-    int a1=rand()%10, a2=rand()%20, b1=rand()%30, b2=rand()%40;
-    sprintf(msg,"a1=%d,a2=%d,b1=%d,b2=%d",a1,a2,b1,b2);
-    info_msg(msg);
-    sumaV2(a1,a2,b1,b2,c);
-
-    if(c->datos[0]!=a1+b1 || c->datos[1]!=a2+b2){
-        sprintf(msg,"suma incorrecta, c=(%d,%d)",c->datos[0],c->datos[1]);
-        err_msg(msg);
-        return 0;
-    }
-
-    ok_msg("sumaV2");
-    return 10;
-}
-
-
-int main( int argc, char *argv[] ) {
-    
-    if(argc>1) test_id=atoi(argv[1]);
-    srand(time(NULL));
-
-    int total_score=0;
-    total_score+=test_suite(test_swap, "Test Swap...", 10, 0, test_id);
-    total_score+=test_suite(test_arrayMaxMin, "Test ArrayMaxMin...", 10, 0, test_id);
-    strcpy(nombre,"Ignacio"); edad=38;
-    total_score+=test_suite(test_creaP, "Test CreaPersona...", 10, 0, test_id);
-    total_score+=test_suite(test_creaV, "Test CreaVector...", 10, 0, test_id);
-    total_score+=test_suite(test_asignarObtenerValor, "Test AsignarValor, ObtenerValor...", 10, 0, test_id);
-    total_score+=test_suite(test_sumaV, "Test Suma de vectores...", 10, 0, test_id);
-    total_score+=test_suite(test_sumaV2, "Test Suma de vectores2...", 10, 0, test_id);
-
-
-    if(argc==1)
-      printf("\ntotal_score: %d/70\n", total_score);
-
-    return 0;
+  return 0;
 }
