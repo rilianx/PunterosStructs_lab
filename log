@@ -310,3 +310,20 @@ Mon 07 Aug 2023 04:43:18 PM UTC:
  tests:  0|1
 total_score: 0/70
 c0c8278
+Mon 07 Aug 2023 04:45:04 PM UTC: 
+ exercises.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+test.c: In function ‘test_reverseArray’:
+test.c:100:5: error: implicit declaration of function ‘print’; did you mean ‘printf’? [-Werror=implicit-function-declaration]
+  100 |     print("reversed array:");
+      |     ^~~~~
+      |     printf
+test.c:101:5: error: too few arguments to function ‘print_array’
+  101 |     print_array(arr);
+      |     ^~~~~~~~~~~
+test.c:53:6: note: declared here
+   53 | void print_array(int arr[], int size){
+      |      ^~~~~~~~~~~
+cc1: all warnings being treated as errors
+Compilation failed
+6c74543
