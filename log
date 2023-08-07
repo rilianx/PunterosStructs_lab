@@ -2,3 +2,148 @@ Sun 06 Aug 2023 07:16:19 PM UTC:
  tests:  0|7
 total_score: 0/70
 ce66795
+Mon 07 Aug 2023 04:07:00 PM UTC: 
+ exercises.c | 92 ++++++++++++++++---------------------------------------------
+ 1 file changed, 24 insertions(+), 68 deletions(-)
+test.c: In function ‘test_swap’:
+test.c:61:5: error: implicit declaration of function ‘swap’ [-Werror=implicit-function-declaration]
+   61 |     swap(&a, &b);
+      |     ^~~~
+test.c: In function ‘test_arrayMaxMin’:
+test.c:91:5: error: implicit declaration of function ‘arrayMaxMin’; did you mean ‘test_arrayMaxMin’? [-Werror=implicit-function-declaration]
+   91 |     arrayMaxMin(a, 10, max0, min0);
+      |     ^~~~~~~~~~~
+      |     test_arrayMaxMin
+test.c: In function ‘test_creaP’:
+test.c:112:5: error: unknown type name ‘Persona’
+  112 |     Persona* p=crearPersona(nombre, "15489XXX-2", edad);
+      |     ^~~~~~~
+test.c:112:16: error: implicit declaration of function ‘crearPersona’ [-Werror=implicit-function-declaration]
+  112 |     Persona* p=crearPersona(nombre, "15489XXX-2", edad);
+      |                ^~~~~~~~~~~~
+test.c:112:16: error: initialization of ‘int *’ from ‘int’ makes pointer from integer without a cast [-Werror=int-conversion]
+test.c:120:16: error: request for member ‘nombre’ in something not a structure or union
+  120 |     if(strcmp(p->nombre,nombre)!=0){
+      |                ^~
+test.c:121:37: error: request for member ‘nombre’ in something not a structure or union
+  121 |         sprintf(msg,"p->nombre=%s",p->nombre);
+      |                                     ^~
+test.c:126:9: error: request for member ‘edad’ in something not a structure or union
+  126 |     if(p->edad!=edad){
+      |         ^~
+test.c:127:35: error: request for member ‘edad’ in something not a structure or union
+  127 |         sprintf(msg,"p->edad=%d",p->edad);
+      |                                   ^~
+test.c: In function ‘test_creaV’:
+test.c:140:5: error: unknown type name ‘Vector’
+  140 |     Vector *v = crearVector(size);
+      |     ^~~~~~
+test.c:140:17: error: implicit declaration of function ‘crearVector’ [-Werror=implicit-function-declaration]
+  140 |     Vector *v = crearVector(size);
+      |                 ^~~~~~~~~~~
+test.c:140:17: error: initialization of ‘int *’ from ‘int’ makes pointer from integer without a cast [-Werror=int-conversion]
+test.c:144:9: error: request for member ‘capacidad’ in something not a structure or union
+  144 |     if(v->capacidad != size){
+      |         ^~
+test.c:149:13: error: request for member ‘datos’ in something not a structure or union
+  149 |         if(v->datos[i] != 0){
+      |             ^~
+test.c: In function ‘test_asignarObtenerValor’:
+test.c:164:5: error: unknown type name ‘Vector’
+  164 |     Vector *v = (Vector*)malloc(sizeof(Vector));
+      |     ^~~~~~
+test.c:164:18: error: ‘Vector’ undeclared (first use in this function)
+  164 |     Vector *v = (Vector*)malloc(sizeof(Vector));
+      |                  ^~~~~~
+test.c:164:18: note: each undeclared identifier is reported only once for each function it appears in
+test.c:164:25: error: expected expression before ‘)’ token
+  164 |     Vector *v = (Vector*)malloc(sizeof(Vector));
+      |                         ^
+test.c:165:6: error: request for member ‘datos’ in something not a structure or union
+  165 |     v->datos = (int *)calloc(3, sizeof(int));
+      |      ^~
+test.c:166:6: error: request for member ‘capacidad’ in something not a structure or union
+  166 |     v->capacidad = 3;
+      |      ^~
+test.c:167:5: error: implicit declaration of function ‘asignarValor’ [-Werror=implicit-function-declaration]
+  167 |     asignarValor(v, 0, a);
+      |     ^~~~~~~~~~~~
+test.c:171:13: error: implicit declaration of function ‘obtenerValor’ [-Werror=implicit-function-declaration]
+  171 |     int val=obtenerValor(v,0);
+      |             ^~~~~~~~~~~~
+test.c: In function ‘test_sumaV’:
+test.c:197:5: error: unknown type name ‘Vector’
+  197 |     Vector *v1 = (Vector*)malloc(sizeof(Vector));
+      |     ^~~~~~
+test.c:197:19: error: ‘Vector’ undeclared (first use in this function)
+  197 |     Vector *v1 = (Vector*)malloc(sizeof(Vector));
+      |                   ^~~~~~
+test.c:197:26: error: expected expression before ‘)’ token
+  197 |     Vector *v1 = (Vector*)malloc(sizeof(Vector));
+      |                          ^
+test.c:198:7: error: request for member ‘datos’ in something not a structure or union
+  198 |     v1->datos = (int *)calloc(3, sizeof(int));
+      |       ^~
+test.c:199:7: error: request for member ‘capacidad’ in something not a structure or union
+  199 |     v1->capacidad = 3;
+      |       ^~
+test.c:201:7: error: request for member ‘datos’ in something not a structure or union
+  201 |     v1->datos[0]=a; v1->datos[1]=b; v1->datos[2]=c;
+      |       ^~
+test.c:201:23: error: request for member ‘datos’ in something not a structure or union
+  201 |     v1->datos[0]=a; v1->datos[1]=b; v1->datos[2]=c;
+      |                       ^~
+test.c:201:39: error: request for member ‘datos’ in something not a structure or union
+  201 |     v1->datos[0]=a; v1->datos[1]=b; v1->datos[2]=c;
+      |                                       ^~
+test.c:207:13: error: ‘v2’ undeclared (first use in this function); did you mean ‘v1’?
+  207 |     Vector *v2 = (Vector*)malloc(sizeof(Vector));
+      |             ^~
+      |             v1
+test.c:207:26: error: expected expression before ‘)’ token
+  207 |     Vector *v2 = (Vector*)malloc(sizeof(Vector));
+      |                          ^
+test.c:214:13: error: ‘v3’ undeclared (first use in this function); did you mean ‘v1’?
+  214 |     Vector *v3 = (Vector*)malloc(sizeof(Vector));
+      |             ^~
+      |             v1
+test.c:214:26: error: expected expression before ‘)’ token
+  214 |     Vector *v3 = (Vector*)malloc(sizeof(Vector));
+      |                          ^
+test.c:218:5: error: implicit declaration of function ‘sumaV’ [-Werror=implicit-function-declaration]
+  218 |     sumaV(v1, v2, v3);
+      |     ^~~~~
+test.c: In function ‘test_sumaV2’:
+test.c:232:5: error: unknown type name ‘Vector’
+  232 |     Vector *c = (Vector*)malloc(sizeof(Vector));
+      |     ^~~~~~
+test.c:232:18: error: ‘Vector’ undeclared (first use in this function)
+  232 |     Vector *c = (Vector*)malloc(sizeof(Vector));
+      |                  ^~~~~~
+test.c:232:25: error: expected expression before ‘)’ token
+  232 |     Vector *c = (Vector*)malloc(sizeof(Vector));
+      |                         ^
+test.c:233:6: error: request for member ‘datos’ in something not a structure or union
+  233 |     c->datos = (int *)calloc(2, sizeof(int));
+      |      ^~
+test.c:234:6: error: request for member ‘capacidad’ in something not a structure or union
+  234 |     c->capacidad = 2;
+      |      ^~
+test.c:238:5: error: implicit declaration of function ‘sumaV2’ [-Werror=implicit-function-declaration]
+  238 |     sumaV2(a1,a2,b1,b2,c);
+      |     ^~~~~~
+test.c:240:9: error: request for member ‘datos’ in something not a structure or union
+  240 |     if(c->datos[0]!=a1+b1 || c->datos[1]!=a2+b2){
+      |         ^~
+test.c:240:31: error: request for member ‘datos’ in something not a structure or union
+  240 |     if(c->datos[0]!=a1+b1 || c->datos[1]!=a2+b2){
+      |                               ^~
+test.c:241:51: error: request for member ‘datos’ in something not a structure or union
+  241 |         sprintf(msg,"suma incorrecta, c=(%d,%d)",c->datos[0],c->datos[1]);
+      |                                                   ^~
+test.c:241:63: error: request for member ‘datos’ in something not a structure or union
+  241 |         sprintf(msg,"suma incorrecta, c=(%d,%d)",c->datos[0],c->datos[1]);
+      |                                                               ^~
+cc1: all warnings being treated as errors
+Compilation failed
+6a9e63e
