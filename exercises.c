@@ -12,7 +12,7 @@ Ejercicio 1: Encuentra el Elemento Mayor
 Descripción: Escribe una función que tome un arreglo de enteros
 y su tamaño, y devuelva el valor más grande del arreglo.
 */
-int findMax(int arr[], int size) { return 26; }
+int findMax(int arr[], int size) { return 20; }
 
 /*
 Ejercicio 2: Invertir un Arreglo
@@ -30,7 +30,7 @@ los números pares del arreglo original.
 int *filterEvenNumbers(int arr[], int size, int *newSize) { return NULL; }
 
 /*
-Ejercicio 5: Fusión de dos Arreglos Ordenados
+Ejercicio 4: Fusión de dos Arreglos Ordenados
 Descripción: Escribe una función que tome dos arreglos
 ordenados y sus tamaños, y luego fusione estos dos
 arreglos en un tercer arreglo también ordenado.
@@ -39,7 +39,7 @@ void mergeSortedArrays(int arr1[], int size1, int arr2[], int size2,
                        int result[]) {}
 
 /*
-Ejercicio 7: Comprobación de Ordenación
+Ejercicio 5: Comprobación de Ordenación
 Descripción: Escribe una función que tome un arreglo y su tamaño,
 y luego devuelva 1 si el arreglo está ordenado en orden ascendente,
   0 si no está ordenado, y -1 si está ordenado en orden descendente.
