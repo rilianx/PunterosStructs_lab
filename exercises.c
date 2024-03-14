@@ -23,14 +23,16 @@ Ejercicio 3: Filtrar Números Pares
 Descripción: Escribe una función que tome un arreglo de enteros
 y su tamaño, y luego devuelva un nuevo arreglo que contenga solo
 los números pares del arreglo original.
+Lo que apunta newsize no está inicializado. *newsize debe almacenar el 
+tamaño del nuevo arreglo que se retorna.
 */
 int *filterEvenNumbers(int arr[], int size, int *newSize) { return NULL; }
 
 /*
 Ejercicio 4: Fusión de dos Arreglos Ordenados
 Descripción: Escribe una función que tome dos arreglos
-ordenados y sus tamaños, y luego fusione estos dos
-arreglos en un tercer arreglo también ordenado.
+ordenados de menor a mayor y sus tamaños, y luego fusione estos dos
+arreglos en un tercer arreglo también ordenado de menor a mayor.
 */
 void mergeSortedArrays(int arr1[], int size1, int arr2[], int size2,
                        int result[]) {}
@@ -74,6 +76,7 @@ mismo orden que los números aparecen en el arreglo. El último nodo de la lista
 debe apuntar a NULL. La función debe devolver un puntero al primer nodo de la
 lista enlazada.
 Recuerda reservar memoria dinámica para cada nodo usando malloc.
+Puedes guiarte con lo que vimos en las clases (diapos).
   */
 
 typedef struct nodo {
